@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: face-embedding-service
+    runtime: docker
+    region: oregon # Options: oregon, ohio, virginia, frankfurt, singapore
+    plan: starter # Options: free, starter, standard, pro (starter+ recommended for ML)
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    envVars:
+      - key: FACE_SERVICE_TOKEN
+        sync: false # Set this manually in Render dashboard for security
+      - key: PORT
+        value: 8000
