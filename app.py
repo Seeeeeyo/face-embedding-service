@@ -90,13 +90,15 @@ async def embed_faces(request: EmbedRequest, _=Depends(require_token)):
 
     landmarks_array = np.array(landmarks, dtype=np.float32)
     embedding = arcface.get_normalized_embedding(image, landmarks_array)
+    # Flatten embedding in case it's 2D (batch dimension)
+    embedding_flat = embedding.flatten().tolist()
     faces.append(
       FaceEmbedding(
         face_index=index + 1,
         confidence=confidence,
         bbox=[float(v) for v in bbox],
         landmarks=[[float(pt[0]), float(pt[1])] for pt in landmarks],
-        embedding=embedding.tolist(),
+        embedding=embedding_flat,
       )
     )
 
