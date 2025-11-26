@@ -11,7 +11,7 @@ from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from pydantic import BaseModel, Field
 from uniface import ArcFace, RetinaFace
 
-app = FastAPI(title="RacePhoto Face Embedding Service")
+app = FastAPI(title="RacePhotos Face Embedding Service")
 app.add_middleware(
   CORSMiddleware,
   allow_origins=["*"],
